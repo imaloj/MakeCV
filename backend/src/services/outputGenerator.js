@@ -1,4 +1,4 @@
-import docx from 'docx';
+import * as docx from 'docx';
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
 import fs from 'fs-extra';
 import path from 'path';

@@ -1,9 +1,9 @@
-import pdfParse from 'pdf-parse';
+import * as pdfParse from 'pdf-parse';
 import fs from 'fs-extra';
 import {ParseError} from '../../middleware/errorHandler.js';
 import logger from '../../utils/logger.js';
 
-export default class PDFParser{
+export default class PDFParse{
     static async extract(filePath){
         try {
             const buffer = await fs.readFile(filePath);

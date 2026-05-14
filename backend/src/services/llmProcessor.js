@@ -3,8 +3,8 @@ import OpenAI from 'openai';
 import {getProvider} from '../config/llmConfig.js';
 import {LLM_MAX_RETRIES,LLM_DEFAULTS} from '../config/constants.js';
 import{LLMError} from '../middleware/errorHandler.js';
-import Helpers from '../utils/helper.js';
-import logger from '..utils/logger.js';
+import Helpers from '../utils/helpers.js';
+import logger from '../utils/logger.js';
 
 export default class LLMProcessor {
     constructor(providerName){

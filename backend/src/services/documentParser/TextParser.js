@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import {ParseError } from '../../middleware/errorHandler.js'
 import logger from '../../utils/logger.js';
-import PDFParser from './PDFParser';
+import PDFParser from './PDFParser.js';
 
 export default class TextParser{
     static async extract(filePath){

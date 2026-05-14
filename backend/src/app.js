@@ -5,8 +5,8 @@ import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
 import path from 'path';
 
-import env from './config/env.js';
-import constants from './config/constants.js';
+import * as env from './config/env.js';
+import * as constants from './config/constants.js';
 import {errorHandler} from './middleware/errorHandler.js';
 import FileUtils from './utils/fileUtils.js';
 import logger from './utils/logger.js';
@@ -15,12 +15,11 @@ import logger from './utils/logger.js';
 import healthRoutes from './routes/health.js';
 import uploadRoutes from './routes/upload.js';
 import customizeRoutes from './routes/customize.js';
-import { prototype } from 'events';
 
 const app = express();
 
 app.use(helmet({
-    crossOriginEmbedderPolicy:{policy:'cross-origin'}
+    crossOriginEmbedderPolicy:{policy:'credentialless'}
 }));
 
 app.use(cors({

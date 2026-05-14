@@ -1,7 +1,7 @@
-export const MAX_FILE_SIZE_MB= parseInt(ProcessingInstruction.env.MAX_FILE_SIZE_MB)||25;
-export const SUPPOERTED_FORMATS=['pdf','docx','txt'];
-export const TEMP_FILE_PATH= ProcessingInstruction.env.TEMP_FILE_PATH||'./temp';
-export const TEMP_FILE_CLEANUP_HOURS= parseInt(ProcessingInstruction.env.TEMP_FILE_CLEANUP_HOURS)|| 24;
+export const MAX_FILE_SIZE_MB= parseInt(process.env.MAX_FILE_SIZE_MB)||25;
+export const SUPPORTED_FORMATS=['pdf','docx','txt'];
+export const TEMP_FILE_PATH= process.env.TEMP_FILE_PATH||'./temp';
+export const TEMP_FILE_CLEANUP_HOURS= parseInt(process.env.TEMP_FILE_CLEANUP_HOURS)|| 24;
 
 //API limits
 export const REQUEST_TIMEOUT_MS = parseInt(process.env.REQUEST_TIMEOUT_MS)|| 60000;
@@ -27,7 +27,7 @@ export const CUSTOMIZATION_STRATEGIES={
 };
 
 //output formats
-export const OUTPUT_FORMATES={
+export const OUTPUT_FORMATS={
     DOCX: 'docx',
     PDF:'pdf',
     TXT:'txt'

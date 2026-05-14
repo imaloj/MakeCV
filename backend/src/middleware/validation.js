@@ -3,15 +3,20 @@ import { ValidationError } from './errorHandler.js';
 
 const schemas={
     customize:Joi.object({
-    jobDescription:Joi.string().min(10).max(20000).required().message({
-        'strind.min': 'Job description must be at least 10 characters',
-        'string.max':'Job decription must not exceed 20000 characters',
-        'any required':'Job description is required'}),
+    jobDescription:Joi.string()
+    .min(10)
+    .max(20000)
+    .required()
+    .messages({
+        'string.min': 'Job description must be at least 10 characters',
+        'string.max':'Job description must not exceed 20000 characters',
+        'any.required':'Job description is required'}),
+        
         strategy: Joi.string().valid('smart-match','reorder','rephrase','full').default('smart-match'),
         preserveOriginal: Joi.boolean().default(true),
         highlightChanges: Joi.boolean().default(true),
         outputFormat: Joi.string().valid('docx','pdf','txt').default('docx'),
-        maxTokens: Joi.number().integer().min(500).max(8000).default('4000'),
+        maxTokens: Joi.number().integer().min(500).max(8000).default(4000),
         temperature: Joi.number().min(0).max(2).default(0.6)
     }),
     upload: Joi.object({
@@ -33,7 +38,7 @@ export const validateCustomize=(req,res,next)=>{
     const{error,value}=schemas.customize.validate(payload);
     if(error){
         throw new ValidationError(
-            'Validation failed',{fields:error.details.map(d=>({field:d.path[0],message:d.message}))}
+            'Validation failed',{fields:error.details.map(d=>({field:d.path[0],message: d.message}))}
         );
     }
     req.validatedBody=value;

@@ -19,7 +19,10 @@ router.post('/',
             });
         }
         const filePath = req.file.path;
-        const filePath =req.file.orignalname.split('.').pop().toLowerCase();
+        const fileType =req.file.originalname
+        .split('.')
+        .pop()
+        .toLowerCase();
         const options =req.validateBody;
 
         logger.info(`Customization request:${req.file.orignalname}->${options.outputFormat}`);
@@ -43,7 +46,7 @@ router.post('/',
                 if(err){
                     logger.error('Download error:',err.message);
                 //if download fails,try sending JSON response
-                if(!res.headerSent){
+                if(!res.headersSent){
                     res.status(500).json({error:
                         'DOWNLOAD_FAILED',message: err.message });
                 }
@@ -84,5 +87,5 @@ asyncHandler(async (req,res)=>{
     }
 })
 );
-
+export default router;
 

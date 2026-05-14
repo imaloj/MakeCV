@@ -1,7 +1,7 @@
 import multer from 'multer';
 import path from 'path';
 import FileUtils from '../utils/fileUtils.js';
-import {MAX_FILE_SIZE_MB, SUPPORT_FORMATS} from '../config/constants.js';
+import {MAX_FILE_SIZE_MB, SUPPORTED_FORMATS} from '../config/constants.js';
 import{FileError} from './errorHandler.js';
 
 //Configure storage
