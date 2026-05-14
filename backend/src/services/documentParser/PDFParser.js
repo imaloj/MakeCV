@@ -3,7 +3,7 @@ import fs from 'fs-extra';
 import {ParseError} from '../../middleware/errorHandler.js';
 import logger from '../../utils/logger.js';
 
-export default class PDFParse{
+export default class PDFParser{
     static async extract(filePath){
         try {
             const buffer = await fs.readFile(filePath);

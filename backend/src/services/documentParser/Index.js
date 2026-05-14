@@ -1,4 +1,4 @@
-import PDFParse from './PDFParser.js';
+import PDFParser from './PDFParser.js';
 import DOMParser from './DOCXParser.js';
 import TextParser from './TextParser.js';
 import {ParseError} from '../../middleware/errorHandler.js';
@@ -7,7 +7,7 @@ import DOCXParser from './DOCXParser.js';
 
 //Parser registry -easy to add new formats
 const PARSERS={
-    pdf:PDFParse,
+    pdf:PDFParser,
     docx: DOCXParser,
     txt: TextParser,
     text: TextParser
