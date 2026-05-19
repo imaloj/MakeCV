@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-import React from 'react'
 import {FileText, Zap} from 'lucide-react'
 
 export default function Header(){

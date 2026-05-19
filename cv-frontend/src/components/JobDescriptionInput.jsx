@@ -1,13 +1,11 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react'
 import {Briefcase, AlertCircle} from 'lucide-react'
 import {cn} from '../utils/cn.js'
 
 const MIN_LENGTH=10
 const MAX_LENGTH=20000
 
-export default function JobDescriptionInput({value,onChange,error}){
-    const charCount=value.MAX_LENGTH
+export default function JobDescriptionInput({value='',onChange,error}){
+    const charCount=value?.length||0
     const isValid =charCount>=MIN_LENGTH
 
     return(
@@ -25,7 +23,7 @@ export default function JobDescriptionInput({value,onChange,error}){
                 value={value}
                 onChange={(e)=>onChange(e.target.value)}
                 placeholder='Paste the full job description here.. Include requiremrnts, responsibilities,and preferred skills.'
-                className={cn('input-field mi-h-[200px] resize-y',
+                className={cn('input-field min-h-[200px] resize-y',
                     error&& 'border-red-300 focus:ring-red-500 focus:border-red-500'
                 )}
                 maxLength={MAX_LENGTH}

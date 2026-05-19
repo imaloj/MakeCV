@@ -1,5 +1,5 @@
 import logger from '../utils/logger.js';
-import {isDevelopment} from '../config/env.js';
+import {isDevelopment,isProduction} from '../config/env.js';
 
 export class CustomError extends Error{
     constructor(message,code,statusCode=500,details={}){

@@ -1,5 +1,3 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react'
 import {Settings, Wand2, ArrowUpDown,PenLine, Sparkles, FileText,FileDown, File } from 'lucide-react'
 import {cn} from '../utils/cn.js'
 
