@@ -4,9 +4,9 @@ import { ValidationError } from './errorHandler.js';
 const schemas={
     customize:Joi.object({
     jobDescription:Joi.string()
+    .required()
     .min(10)
     .max(20000)
-    .required()
     .messages({
         'string.min': 'Job description must be at least 10 characters',
         'string.max':'Job description must not exceed 20000 characters',

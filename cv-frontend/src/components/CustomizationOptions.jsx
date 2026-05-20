@@ -17,7 +17,7 @@ const OUTPUT_FORMATS =[
 export default function CustomizationOptions({options, onChange}){
     return(
         <div className='space-y-6'>
-            <div className='flex item-center gap-2'>
+            <div className='flex items-center gap-2'>
                 <Settings className='w-5 h-5 text-gray-2'/>
                 <h2 className='text-lg font-semibold text-gray-900'>3. Customization Options</h2>
             </div>
@@ -31,8 +31,8 @@ export default function CustomizationOptions({options, onChange}){
                         return(
                             <button
                             key={strategy.id}
-                            ionClick={()=>onChange({...options, strategy: strategy.id})}
-                            className={cn('flex item-start gap-3 p-4 rounded-lg border-2 text-left transition-all duration-200',isSelected?
+                            onClick={()=>onChange({...options, strategy: strategy.id})}
+                            className={cn('flex items-start gap-3 p-4 rounded-lg border-2 text-left transition-all duration-200',isSelected?
                                 'border-primary-500 bg-primary-50'
                                 :'border-gray-200 hover:border-primary-300 hover:bg-gray-50'
                             )}
@@ -63,7 +63,7 @@ export default function CustomizationOptions({options, onChange}){
                         return(
                             <button  key={format.id} onClick={()=>onChange({...options,outputFormat: format.id})}
                             className={cn(
-                                'flex-1 flex flex-col item-center gap-2 p-4 rounded-lg border-2 transition-all duration-200',
+                                'flex-1 flex flex-col items-center gap-2 p-4 rounded-lg border-2 transition-all duration-200',
                                 isSelected
                                 ?'border-primary-500 bg-primary-50'
                                 :'border-gray-200 hover:border-primary-300 hover:bg-gray-50'
@@ -89,12 +89,12 @@ export default function CustomizationOptions({options, onChange}){
 
             {/*Advanced options toggle */}
             <details className='group'>
-                <summary className='flex item-center gap-2 cursor-pointer text-sm font-medium text-gray-600 hover:text-gray-900'>
-                    <span className='transition-transform group-open:route-90'></span>
+                <summary className='flex items-center gap-2 cursor-pointer text-sm font-medium text-gray-600 hover:text-gray-900'>
+                    <span className='transition-transform group-open:rotate-90'></span>
                     Advanced Options
                 </summary>
-                <div className='mt-4 space-y-4 pl-4 border-1-2 border-gray-200'>
-                    <div className='flex item-center justify-between'>
+                <div className='mt-4 space-y-4 pl-4 border-l-2 border-gray-200'>
+                    <div className='flex items-center justify-between'>
                         <div>
                             <p className='text-sm font-medium text-gray-900'>Preserve Original</p>
                             <p className='text-xs text-gray-500'>Keep original content, only enhance</p>
@@ -111,9 +111,9 @@ export default function CustomizationOptions({options, onChange}){
                         )}/>
                     </button>
                     </div>
-                    <div className='flex item-center justify-between'>
+                    <div className='flex items-center justify-between'>
                         <div>
-                        <p className='text-sm font-medium text-gray-900'>Highligh Changes</p>
+                        <p className='text-sm font-medium text-gray-900'>Highlight Changes</p>
                         <p className='text-xs text-gray-500'>Show what was modified</p>
                     </div>
                     <button onClick={()=> onChange({...options,highlightChanges:!options.highlightChanges})}

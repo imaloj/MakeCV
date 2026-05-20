@@ -16,10 +16,10 @@ export default function ProgressIndicator({progress}){
         <div className='card animate-slide-up'>
             <div className='flex items-center gap-3 mb-4'>
                 {progress.step==='customize'?(
-                    <loader2 className="w-6 h-6 text-primary-600 animate-spin"/>
+                    <Loader2 className="w-6 h-6 text-primary-600 animate-spin"/>
                 ):progress.step==='complete'?(
                     <CheckCircle className='w-6 h-6 text-green-600'/>
-                ):(<Sparkles className='w-6 h-6 text-primary-600 animate-pluse'/>
+                ):(<Sparkles className='w-6 h-6 text-primary-600 animate-pulse'/>
                 )}
                 <div>
                     <p className='font-medium text-gray-900'>{progress.message}</p>
@@ -44,12 +44,12 @@ export default function ProgressIndicator({progress}){
                     <div key={step.id} className='flex flex-col items-center gap-1'>
                         <div className={cn(
                             'w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300',
-                            isCurrent && 'ring-2 rinf-primary-500 ring-offset-2',
+                            isCurrent && 'ring-2 ring-primary-500 ring-offset-2',
                             isActive?'bg-primary-100 text-primary-700':'bg-gray-100 text-gray-400'
                         )}>
                             <Icon className={cn('w-4 h-4',isCurrent&& 'animate-spin')}/>
                         </div>
-                        <span className={cn('text-xs font-medium'.isActive? 'text-gray-900':'text-gray-400')}>
+                        <span className={cn('text-xs font-medium',isActive? 'text-gray-900':'text-gray-400')}>
                             {step.label}
                         </span>
                     </div>

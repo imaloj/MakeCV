@@ -39,7 +39,7 @@ export class DocumentParserService{
     static async parse(filePath, fileType){
         logger.info(`Parsing document:${filePath}(type:${fileType})`);
 
-        const parser = ParserFactory.getParser(fileType);
+        const parser = ParseFactory.getParser(fileType);
         const result = await parser. extract(filePath);
 
         logger.info(`Successfully parsed document:${result.sections?.header?.name|| 'Unknown'} (${result.fullText?.length|| 0}chars)`);

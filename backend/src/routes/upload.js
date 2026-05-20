@@ -38,7 +38,7 @@ try{
         summaryPreview:parsed.sections.summary?.substring(0,200),
         experienceCount:parsed.sections.skills?.slice(0,10),
         educationCount:parsed.sections.education?.length,
-        textLength:parsed.fullText?.lenght
+        textLength:parsed.fullText?.length
     }
     });
 }catch (error){

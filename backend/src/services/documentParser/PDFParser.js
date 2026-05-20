@@ -1,4 +1,4 @@
-import * as pdfParse from 'pdf-parse';
+import * as PdfParse from 'pdf-parse-new';
 import fs from 'fs-extra';
 import {ParseError} from '../../middleware/errorHandler.js';
 import logger from '../../utils/logger.js';
@@ -7,7 +7,7 @@ export default class PDFParser{
     static async extract(filePath){
         try {
             const buffer = await fs.readFile(filePath);
-            const data = await pdfParse(buffer);
+            const data = await PdfParse.default(buffer);
 
             const fullText = data.text||''
             const sections = this.parseSections(fullText);
@@ -22,14 +22,16 @@ export default class PDFParser{
                 }
             };
         } catch(error){
-            logger.error(`PDF parsing failed for ${filePath}:`,error.message);
+            logger.error(`PDF parsing failed for ${filePath}:${error.message}`,error.stack);
             throw new ParseError(
                 'Failed to parse PDF file',
-                {fileName: filePath, reason: error.message}
+                {fileName: filePath, 
+                reason: error.message, 
+                stact:error.stack}
             );
         }
     }
-    static parseSection(text){
+    static parseSections(text){
         const sections={
             header:{},
             summary:'',
@@ -57,12 +59,12 @@ export default class PDFParser{
         if(matches) sections.header.contact[key]=
         matches[0];
     }
-    const skillsMatch = text.match(/(?:skills | technical skills|core competencies)[\s\S]*?(?=(?:experience\education|projects|certifications|$))/i);
+    const skillsMatch = text.match(/(?:skills | technical skills|core competencies)[\s\S]*?(?=(?:experience|education|projects|certifications|$))/i);
     if(skillsMatch){
         const skillsText = skillsMatch[0];
         sections.skills= skillsText.split(/[,;|\n•\-]+/).map(s=> s.replace(/skills|technicalskills|core competencies/i,'').trim()).filter(s => s.length>1 &&s.length<50);
     }
-     const expMatch =text.match(/(?:experience|worke experience| professional experience)[\s\S]*?(?=(?:education|skills|projects|cerftifications|$))/i);
+     const expMatch =text.match(/(?:experience|work experience| professional experience)[\s\S]*?(?=(?:education|skills|projects|certifications|$))/i);
      if(expMatch){
         const expText =expMatch[0];
         //split by likely job entry boundaries(dates and company pattern)
