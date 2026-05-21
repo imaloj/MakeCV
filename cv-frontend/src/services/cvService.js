@@ -19,7 +19,7 @@ export const cvService = {
     formData.append("strategy", options.strategy || "smart-match");
     formData.append("outputFormat", options.outputFormat || "docx");
     formData.append(
-      "preseveOriginal",
+      "preserveOriginal",
       String(options.preserveOriginal ?? true),
     );
     formData.append(

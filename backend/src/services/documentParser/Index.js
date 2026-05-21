@@ -17,7 +17,7 @@ export class ParseFactory{
     static getParser(fileType){
         const parser = PARSERS[fileType.toLowerCase()];
         if (!parser){
-            throw new ParserError(
+            throw new ParseError(
                 `No Parser available for file type :${fileType}`,
                 { supportedTypes: Object.keys(PARSERS)}
             );

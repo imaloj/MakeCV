@@ -22,7 +22,7 @@ export default class LLMProcessor {
             temperature = LLM_DEFAULTS.temperature
         }=options;
         logger.info(`Starting CV customization with strategy:${strategy}, provider:${this.providerName}`);
-        const prompt =this.builtCustomizationPrompt(cvContent,jobDescription,strategy);
+        const prompt =this.buildCustomizationPrompt(cvContent,jobDescription,strategy);
         
         try{
             const result = await Helpers.retry(

@@ -59,7 +59,7 @@ export default class PDFParser{
         if(matches) sections.header.contact[key]=
         matches[0];
     }
-    const skillsMatch = text.match(/(?:skills | technical skills|core competencies)[\s\S]*?(?=(?:experience|education|projects|certifications|$))/i);
+    const skillsMatch = text.match(/(?:technical skills|core competencies|skills)[\s\S]*?(?=(?:experience|education|projects|certifications|awards|$))/i);
     if(skillsMatch){
         const skillsText = skillsMatch[0];
         sections.skills= skillsText.split(/[,;|\n•\-]+/).map(s=> s.replace(/skills|technicalskills|core competencies/i,'').trim()).filter(s => s.length>1 &&s.length<50);
@@ -68,7 +68,7 @@ export default class PDFParser{
      if(expMatch){
         const expText =expMatch[0];
         //split by likely job entry boundaries(dates and company pattern)
-        const entries = expText.split(/(?=(?:19|20)\d{2}|\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\b)/i);
+        const entries = expText.split(/(?=\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+(?:19|20)\d{2}|\b(?:19|20)\d{2}\s*[-–—]\s*(?:(?:19|20)\d{2}|present|current))/i);
       sections.experience = entries
         .slice(1, 6) // Limit entries
         .map(entry => ({

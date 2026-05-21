@@ -23,9 +23,9 @@ router.post('/',
         .split('.')
         .pop()
         .toLowerCase();
-        const options =req.validateBody;
+        const options =req.validatedBody;
 
-        logger.info(`Customization request:${req.file.orignalname}->${options.outputFormat}`);
+        logger.info(`Customization request:${req.file.originalname}->${options.outputFormat}`);
 
         const customizer = new CVCustomizer({
             llmProvider:options.llmProvider

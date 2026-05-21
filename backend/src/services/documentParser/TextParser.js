@@ -6,7 +6,7 @@ import PDFParser from './PDFParser.js';
 export default class TextParser{
     static async extract(filePath){
         try{
-            const fullText= await fs.readFile(filePath,'uft-8');
+            const fullText= await fs.readFile(filePath,'utf-8');
             const sections =PDFParser.parseSections(fullText);
             
             return{

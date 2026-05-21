@@ -36,7 +36,9 @@ try{
     parsed:{
         header:parsed.sections.header,
         summaryPreview:parsed.sections.summary?.substring(0,200),
-        experienceCount:parsed.sections.skills?.slice(0,10),
+        experienceCount:parsed.sections.experience?.length,
+        skillsCount:parsed.sections.skills?.length,
+        skillsPreview:parsed.sections.skills?.slice(0,10),
         educationCount:parsed.sections.education?.length,
         textLength:parsed.fullText?.length
     }
