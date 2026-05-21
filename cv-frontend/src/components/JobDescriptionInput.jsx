@@ -23,7 +23,7 @@ export default function JobDescriptionInput({value='',onChange,error}){
                 value={value}
                 onChange={(e)=>onChange(e.target.value)}
                 placeholder='Paste the full job description here.. Include requiremrnts, responsibilities,and preferred skills.'
-                className={cn('input-field min-h-[200px] resize-y',
+                className={cn('input-field min-h-50 resize-y',
                     error&& 'border-red-300 focus:ring-red-500 focus:border-red-500'
                 )}
                 maxLength={MAX_LENGTH}

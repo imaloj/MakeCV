@@ -19,6 +19,7 @@ export default function Home() {
   const [file, setFile] = useState(null);
   const [jobDescription, setJobDescription] = useState("");
   const [options, setOptions] = useState(DEFAULT_OPTIONS);
+  const [localError,setLocalError]=useState(null);
 
   const {
     isLoading,
@@ -47,27 +48,43 @@ export default function Home() {
   };
 
   const handleCustomize = async () => {
-    if (!file || !jobDescription.trim()) return;
-    try {
-      await customize(file, jobDescription, options);
-    } catch {
-      //error handle in hook
+    setLocalError(null);
+
+    if (!file){
+      alert('Please upload your CV first.');
+      return;
+    }
+    if(!jobDescription.trim()){
+      alert("Please enter a job description.");
+      return;
+    }
+    if(jobDescription.trim().length<10){
+      alert("Job Description must be at least 10 characters.");
+      return;
+    }
+    try{
+      await customize(file,jobDescription,options);
+    }catch{
+      //already handled in hook
     }
   };
-  const canSubmit = file && jobDescription.trim().length >= 10 && !isLoading;
+  const canSubmit = !isLoading;
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
-      <main className="max-w-4xl mx-auto px-4 py-8 space-y-6">
+      <main className="max-w-6xl mx-auto px-4 py-8 space-y-6">
         {/* Error */}
-        {error && <ErrorMessage message={error} onDismiss={() => {}} />}
+        {(error || localError)&&( <ErrorMessage message={error||localError} onDismiss={() =>setLocalError(null)}
+        />
+        )}
 
         {/*Progress */}
         {progress && <ProgressIndicator progress={progress} />}
 
         {/*result */}
         {result && <ResultViewer result={result} onReset={handleClear} />}
+
         {/*main form*/}
         {!result && (
           <div className="space-y-6">
@@ -79,6 +96,7 @@ export default function Home() {
                 onClear={handleClear}
               />
             </div>
+            
             {file && (
               <div className="card animate-slide-up">
                 <JobDescriptionInput
@@ -104,7 +122,7 @@ export default function Home() {
                     ?'bg-white text-indigo-600 border border-indigo-600'
                 :'bg-indigo-600 text-white hover:bg-indigo-500'
             }
-            focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-50`}
+            focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
             >
                   {isLoading ? (
                     <>
